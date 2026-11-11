@@ -3,8 +3,10 @@ ENV NODE_ENV=production
 
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    ca-certificates tini python3 python3-venv git \
+    ca-certificates tini python3 python3-venv git chromium fonts-noto-cjk \
   && rm -rf /var/lib/apt/lists/*
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 
 RUN corepack enable && corepack prepare pnpm@10.23.0 --activate
 
